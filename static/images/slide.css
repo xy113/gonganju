@@ -1,0 +1,145 @@
+/* CSS Document */
+.box {clear:both; width:980px; margin:10px auto;}
+.box .left {
+    float: left;
+    width: 650px;
+}
+.box .left .bd {
+    overflow: hidden;
+    padding: 15px 20px;
+    width: 610px;
+}
+.box .right {
+    float: right;
+    width: 330px;
+}
+.box .right .bd {
+    background: none repeat scroll 0 0 #F2F2F2;
+    padding: 15px;
+    width: 270px;
+}
+.focus {
+    height: 400px;
+    position: relative;
+}
+.focus .hdtab {
+    bottom: 70px;
+    position: absolute;
+    right: 10px;
+}
+.focus .hdtab li {
+    background: url("http://cn.yimg.com/nature/2011/1219/focus_link.png") no-repeat scroll 0 0 transparent;
+    color: #000000;
+    display: inline;
+    float: left;
+    font: 200 12px/17px Arial,Helvetica,sans-serif;
+    height: 17px;
+    margin: 0 0 0 7px;
+    text-align: center;
+    width: 18px;
+}
+.focus .hdtab li.on {
+    background: url("http://cn.yimg.com/nature/2011/1219/focus_hover.png") no-repeat scroll 0 0 transparent;
+    font-weight: 700;
+    height: 17px;
+    width: 18px;
+}
+.focus .lbox {
+    height: 400px;
+    overflow: hidden;
+    width: 650px;
+}
+.focus .lbox img {
+    display: block;
+    height: 400px;
+    width: 650px;
+}
+.focus .lbox p {
+    bottom: 0;
+    display: block;
+    height: 110px;
+    left: 0;
+    padding: 0 15px;
+    position: absolute;
+    width: 620px;
+}
+.focus .lbox p b {
+    border-bottom: 1px solid #737373;
+    color: #FFD800;
+    display: block;
+    font: 200 25px/30px "Microsoft YaHei","SimHei";
+    padding: 10px 5px;
+    width: 610px;
+}
+.focus .lbox p span {
+    color: #CCCCCC;
+    display: block;
+    font: 200 12px/18px "SimSun";
+    padding: 10px 5px;
+    width: 610px;
+}
+.focus .lbox p a:link, .focus .lbox p a:visited {
+    color: #FFD800;
+}
+.focus .bg {
+    background-color: rgba(0, 0, 0, 0.4);
+    bottom: 0;
+    height: 110px;
+    left: 0;
+    position: absolute;
+    width: 650px;
+}
+.news {
+    background: url("http://cn.yimg.com/nature/2011/1214/bevel.jpg") no-repeat scroll right top #F2F2F2;
+    height: 370px;
+    overflow: hidden;
+    padding: 15px;
+    width: 300px;
+}
+.news .h2 {
+    height: 21px;
+    width: 270px;
+}
+.news .cont {
+    width: 270px;
+}
+.news .cont .photo {
+    height: 90px;
+    padding: 10px 0;
+    width: 270px;
+}
+.news .cont .photo img {
+    border: 1px solid #C4C4C4;
+    float: left;
+    height: 82px;
+    padding: 3px;
+    width: 112px;
+}
+.news .cont .photo span {
+    color: #666666;
+    display: block;
+    float: right;
+    font: 200 12px/18px SimSun;
+    height: 70px;
+    padding: 10px 0;
+    width: 140px;
+}
+.news .cont .photo strong {
+    color: #006699;
+}
+.news .cont .photo a {
+    color: #006699;
+}
+.news .cont .list_news {
+    padding: 0;
+    width: 270px;
+}
+.news .cont .list_news li {
+    background: url("http://cn.yimg.com/nature/2011/1214/arrow.gif") no-repeat scroll 10px center transparent;
+    border-bottom: 1px dotted #A9A9A9;
+    font: 200 12px/29px SimSun;
+    height: 29px;
+    padding-left: 25px;
+    width: 245px;
+	overflow:hidden;
+}

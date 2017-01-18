@@ -1,0 +1,183 @@
+<div class="toolbar">
+
+	<span class="right">
+
+		<form name="search" action="">
+
+			<input type="hidden" name="action" value="$action">
+
+			<select name="cid" id="cid">
+
+			<option value="0" class="bold">$lang[image_all]</option>
+
+			{loop $categories[category] $cat}
+
+			<option value="$cat[cid]" class="bold"{if $cid==$cat[cid]} selected="selected"{/if}>$cat[name]</option>
+
+			{loop $categories[sub] $sub}
+
+			{if $sub[fid]==$cat[cid]}
+
+			<option value="$sub[cid]"{if $cid==$sub[cid]} selected="selected"{/if}>|—$sub[name]</option>
+
+			{/if}
+
+			{/loop}
+
+			{/loop}
+
+			</select>
+
+			<input type="text" class="text text200" name="keywords" value="$keywords">
+
+			<input type="submit" class="button search" value="$lang[search]">
+
+		</form>
+
+	</span>
+
+	<h2>$lang[image_manage]</h2>
+
+	<ul class="tab">
+
+		<li class="current"><a href="$BASESCRIPT?action=$action"><span>$lang[manage]</span></a></li>
+
+		<li><a href="$BASESCRIPT?action=$action&operation=add&cid=$cid"><span>$lang[add]</span></a></li>
+
+	</ul>
+
+</div>
+
+<div class="wrapper">
+
+  <form name="$action" id="$action" method="post" action="">
+
+  <input type="hidden" name="formsubmit" value="yes">
+
+  <input type="hidden" name="formhash" value="{FORMHASH}">
+
+  <table width="100%" border="0" cellspacing="0" cellpadding="0" class="listtable">
+
+    <tr>
+
+      <th width="55"><input type="checkbox" class="checkbox" onclick="checkAll(this,'id[]')"> $lang[selectall]</th>
+
+      <th>图组标题</th>
+
+      <th width="80">图组分类</th>
+
+      <th width="80">$lang[article_author]</th>
+
+      <th width="50">$lang[article_views]</th>
+
+	  <th width="50">$lang[recommend]</th>
+
+      <th width="50">$lang[audited]</th>
+
+      <th width="140">$lang[pubtime]</th>
+
+      <th width="100">&nbsp;</th>
+
+    </tr>
+
+	<!--{loop $images $img}-->
+
+    <tr onmouseOver="$(this).addClass('hover')" onmouseOut="$(this).removeClass('hover')">
+
+      <td><input type="checkbox" class="checkbox" name="id[]" value="$img[id]"></td>
+
+      <td><a href="views.php?id=$img[id]" target="_blank">$img[title]</a></td>
+
+      <td>$img[name]</td>
+
+      <td>$img[author]</td>
+
+      <td>$img[views]</td>
+
+	  <td><img src="images/{if $img[recommend]}yes.gif{else}no.gif{/if}" border="0" /></td>
+
+      <td><img src="images/{if $img[audited]}yes.gif{else}no.gif{/if}" border="0" /></td>
+
+      <td>$img[pubtime]</td>
+
+      <td><a href="$BASESCRIPT?action=$action&operation=edit&id=$img[id]">$lang[edit]</a> <a href="$BASESCRIPT?action=imagefile&operation=upload&gid=$img[id]">上传图片</a></td>
+
+    </tr>
+
+	<!--{/loop}-->
+
+	<tr class="bottom">
+
+		<td><input type="checkbox" class="checkbox" onclick="checkAll(this,'id[]')"> $lang[selectall]</td>
+
+		<td colspan="8">
+
+			<span class="pagebox">$pagelink</span>
+
+			<select name="mod" id="mod" class="select">
+
+				<option value="delete">删除</option>
+
+				<option value="recommend">设为推荐</option>
+
+				<option value="unrecommend">取消推荐</option>
+
+				<option value="audited">通过审核</option>
+
+				<option value="unaudited">取消审核</option>
+
+				<option value="move">移动文章</option>
+
+			</select>
+
+			<select name="target" id="target" style="display:none;">
+
+				{loop $categories[category] $cat}
+
+				<option value="$cat[cid]"{if $cid==$cat[cid]} selected="selected"{/if}{if !$cat[status]} disabled="disabled"{/if} class="bold">$cat[name]</option>
+
+				{loop $categories[sub] $sub}
+
+				{if $sub[fid]==$cat[cid]}
+
+				<option value="$sub[cid]"{if $cid==$sub[cid]} selected="selected"{/if}{if !$sub[status]} disabled="disabled"{/if}>|—$sub[name]</option>
+
+				{/if}
+
+				{/loop}
+
+				{/loop}
+
+			</select>
+
+			<input type="submit" class="button" value="$lang[submit]">
+
+			<input type="button" class="button" value="$lang[refresh]" onclick="LoadPage()">
+
+		</td>
+
+	</tr>
+
+  </table>
+
+  </form>
+
+</div>
+
+<script type="text/javascript">
+
+$("#mod").change(function(){
+
+	if($(this).val()=='move'){
+
+		$("#target").show();
+
+	}else {
+
+		$("#target").hide();
+
+	}
+
+});
+
+</script>

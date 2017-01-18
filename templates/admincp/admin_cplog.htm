@@ -1,0 +1,115 @@
+<div class="toolbar">
+
+	<span class="right">
+
+		<form method="get" name="search" action="$BASESCRIPT">
+
+			<input type="hidden" name="action" value="$action" />
+
+			<input type="text" class="text text200" id="keywords" value="$keywords" />
+
+			<input type="submit" class="button search" value="$lang[search]" />
+
+		</form>
+
+	</span>
+
+	<h2>$lang[cplog_list]</h2>
+
+	<span class="records">$lang[total]{$totalrecords}$lang[total_records]</span>
+
+</div>
+
+<div class="wrapper">
+
+  <table width="100%" border="0" cellspacing="0" cellpadding="0" class="listtable">
+
+	<tr>
+
+	  <th width="50"><input type="checkbox" class="checkbox" onclick="checkAll(this,'delete[]')" /> $lang[delete_check]</td>
+
+	  <th width="60">$lang[cplog_admin]</th>
+
+	  <th width="360">$lang[cplog_body]</th>
+
+	  <th>$lang[cplog_requesturi]</th>
+
+	  <th width="80">$lang[cplog_ipaddr]</th>
+
+	  <th width="100" class="last">$lang[cplog_time]</th>
+
+	</tr>
+
+	<tbody id="cplogs">
+
+	<!--{loop $cplogs $log}-->
+
+	<tr>
+
+	  <td><label><input name="delete[]" type="checkbox" value="$log[id]" class="checkbox" /></label></td>
+
+	  <td><a href="$BASESCRIPT?action=cplog&uid=$log[uid]">$log[username]</a></td>
+
+	  <td>$log[body]</td>
+
+	  <td>$log[requesturi]</td>
+
+	  <td><a href="http://www.ip138.com/ips.asp?ip=$log[ipaddr]" target="_blank">$log[ipaddr]</a></td>
+
+	  <td>$log[dateline]</td>
+
+	</tr>
+
+	<!--{/loop}-->
+
+	</tbody>
+
+	<tr class="bottom">
+
+		<td colspan="6">
+
+			<span class="pagebox">$pagelink</span>
+
+			<b class="button" tabindex="0" onclick="Delete('delete[]','$querystring&formhash={FORMHASH}')">$lang[del]</b>
+
+			<b class="button" tabindex="0" onclick="ClearAll()">$lang[cplog_clear]</b>
+
+			<b class="button" tabindex="0" onclick="Export()">$lang[cplog_export]</b>
+
+		</td>
+
+	</tr>
+
+  </table>
+
+</div>
+
+<script type="text/javascript">
+
+$("#cplogs tr").mouseover(function(){$(this).addClass("hover")}).mouseout(function(){$(this).removeClass("hover")});
+
+function ClearAll(){
+
+	if(confirm(drop_confirm)){
+
+		$.ajax({url:ajaxurl+'&operation=clearall&formhash={FORMHASH}',
+
+			beforSend:showloading("正在删除信息..."),
+
+			success:function(response){$("#body").html(response)},
+
+			complete:closeloading()
+
+		})
+
+	}
+
+}
+
+function Export(){
+
+	window.open(baseurl+"&operation=export");
+
+}
+
+</script>

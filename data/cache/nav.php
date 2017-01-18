@@ -1,0 +1,85 @@
+<?php
+//Xcms! cache file, DO NOT modify me!
+//Created: Apr 16, 2013, 11:17
+//Identify: 5b05396d2421519fa119b1428978ed39
+
+$CACHE['nav'] = array(
+'13'=>array (
+  'id' => '13',
+  'fid' => '0',
+  'title' => '通知通报',
+  'url' => 'arclist.php?cid=2',
+  'position' => 'mid',
+  'open' => '0',
+  'displayorder' => '2',
+  'display' => '1',
+  'type' => '0',
+),
+'14'=>array (
+  'id' => '14',
+  'fid' => '0',
+  'title' => '党建信息',
+  'url' => 'arclist.php?cid=3',
+  'position' => 'mid',
+  'open' => '0',
+  'displayorder' => '3',
+  'display' => '1',
+  'type' => '0',
+),
+'15'=>array (
+  'id' => '15',
+  'fid' => '0',
+  'title' => '工青妇工作',
+  'url' => 'arclist.php?cid=4',
+  'position' => 'mid',
+  'open' => '0',
+  'displayorder' => '4',
+  'display' => '1',
+  'type' => '0',
+),
+'19'=>array (
+  'id' => '19',
+  'fid' => '0',
+  'title' => '专项工作',
+  'url' => 'arclist.php?cid=5',
+  'position' => 'mid',
+  'open' => '0',
+  'displayorder' => '5',
+  'display' => '1',
+  'type' => '0',
+),
+'16'=>array (
+  'id' => '16',
+  'fid' => '0',
+  'title' => '党务知识',
+  'url' => 'arclist.php?cid=10',
+  'position' => 'mid',
+  'open' => '0',
+  'displayorder' => '6',
+  'display' => '1',
+  'type' => '0',
+),
+'17'=>array (
+  'id' => '17',
+  'fid' => '0',
+  'title' => '学习园地',
+  'url' => 'arclist.php?cid=7',
+  'position' => 'mid',
+  'open' => '0',
+  'displayorder' => '7',
+  'display' => '1',
+  'type' => '0',
+),
+'20'=>array (
+  'id' => '20',
+  'fid' => '0',
+  'title' => '规范性文件',
+  'url' => 'arclist.php?cid=9',
+  'position' => 'mid',
+  'open' => '0',
+  'displayorder' => '7',
+  'display' => '1',
+  'type' => '0',
+)
+);
+?>

@@ -1,0 +1,53 @@
+<div class="toolbar">
+
+	<h2>$lang[runlog]</h2>
+
+	<span class="records">$lang[total]{$totalrecords}$lang[total_records]</span>
+
+</div>
+
+<div class="wrapper">
+
+  <table width="100%" border="0" cellspacing="0" cellpadding="0" class="listtable">
+
+	<tr>
+
+	  <th width="80">$lang[cplog_admin]</th>
+
+	  <th width="300">$lang[cplog_body]</th>
+
+	  <th>$lang[cplog_requesturi]</th>
+
+	  <th width="120">$lang[cplog_ipaddr]</th>
+
+	  <th width="100">$lang[cplog_time]</th>
+
+	</tr>
+
+	<!--{loop $cplogs $log}-->
+
+	<tr onmouseover="$(this).addClass('hover')" onmouseout="$(this).removeClass('hover')">
+
+	  <td>$log[username]</td>
+
+	  <td>$log[body]</td>
+
+	  <td>$log[requesturi]</td>
+
+	  <td><a href="http://www.ip138.com/ips.asp?ip=$log[ipaddr]" target="_blank">$log[ipaddr]</a></td>
+
+	  <td>$log[dateline]</td>
+
+	</tr>
+
+	<!--{/loop}-->
+
+	<tr class="bottom">
+
+		<td colspan="5"><span class="pagebox">$pagelink</span></td>
+
+	</tr>
+
+  </table>
+
+</div>

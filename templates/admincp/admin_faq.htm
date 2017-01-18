@@ -1,0 +1,233 @@
+<!--{if $operation=='edit'}-->
+
+<script type="text/javascript" src="source/ueditor/editor_config.js"></script>
+
+<script type="text/javascript" src="source/ueditor/editor_all_min.js"></script>
+
+<link rel="stylesheet" type="text/css" href="source/ueditor/themes/default/ueditor.css"/>
+
+<div class="toolbar">
+
+	<h2>$lang[faq]</h2>
+
+	<ul class="tab">
+
+		<li><a href="$BASESCRIPT?action=faq"><span>$lang[manage]</span></a></li>
+
+		<li class="current"><a href="$BASESCRIPT?action=faq&operation=edit&id=$id"><span>$lang[edit]</span></a></li>
+
+	</ul>
+
+</div>
+
+<div class="wrapper">
+
+<form method="post" id="faq" name="faq" action="{$BASESCRIPT}?action=faq&operation=edit">
+
+	<input type="hidden" name="id" value="$id" />
+
+	<input type="hidden" name="formsubmit" value="yes">
+
+	<input type="hidden" name="formhash" value="{FORMHASH}" />
+
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="formtable">
+
+	<tr class="firstrow">
+
+	  <td colspan="2">$lang[article_write]</td>
+
+	</tr>
+
+	<tr>
+
+	  <td width="60" class="bold">$lang[title]</td>
+
+	  <td><input type="text" class="text text500" name="articlenew[title]" value="$article[title]"></td>
+
+	</tr>
+
+	<tr>
+
+	  <td class="bold">$lang[displayorder]</td>
+
+	  <td><input type="text" class="text text500" name="articlenew[displayorder]" value="$article[displayorder]"></td>
+
+	</tr>
+
+	<tr>
+
+	  <td class="bold">$lang[keywords]</td>
+
+	  <td><input type="text" class="text text500" name="articlenew[keywords]" value="$article[keywords]"></td>
+
+	</tr>
+
+	<tr>
+
+	  <td colspan="2">
+
+	  	<textarea id="editor" name="articlenew[content]">$article[body]</textarea>
+
+		<script type="text/javascript">
+
+		var editor = new baidu.editor.ui.Editor();
+
+		editor.render("editor");
+
+		</script>
+
+	  </td>
+
+	</tr>
+
+	<tr>
+
+	  <td><input type="submit" class="button submit" name="button-submit" value="$lang[submit]"></td>
+
+	  <td>&nbsp;</td>
+
+	</tr>
+
+  </table>
+
+</form>
+
+</div>
+
+<script type="text/javascript">
+
+$("#faq").submit(function(){
+
+	var title = $("input[name='articlenew[title]']").val();
+
+	var content = FCKeditorAPI.GetInstance("articlenew[content]").GetXHTML();
+
+	if(!title || !content){
+
+		alert('$lang[faq_submit_error]');
+
+		return false;
+
+	}else{
+
+		return true;
+
+	}
+
+});
+
+function checkForm(){
+
+	if(!$("input[name='article[title]']").val()){
+
+		alert("标题不能留空哦");
+
+		return false;
+
+	}
+
+	return true;
+
+}
+
+</script>
+
+<!--{else}-->
+
+<div class="toolbar">
+
+	<h2>$lang[faq]</h2>
+
+</div>
+
+<div class="wrapper">
+
+	<form name="faq" method="post" action="{$BASESCRIPT}?action=faq">
+
+	<input type="hidden" name="formsubmit" value="yes" />
+
+	<input type="hidden" name="formhash" value="{FORMHASH}" />
+
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="listtable">
+
+      <tr>
+
+        <th width="50"><input type="checkbox" class="checkbox" onClick="checkAll(this,'delete[]')"> $lang[delete_check]</th>
+
+        <th width="320">$lang[title]</th>
+
+        <th width="100">$lang[displayorder]</th>
+
+        <th>$lang[keywords]</th>
+
+        <th width="80">&nbsp;</th>
+
+      </tr>
+
+	  <tbody id="faq">
+
+	  <!--{loop $articles $article}-->
+
+      <tr>
+
+        <td><input type="checkbox" class="checkbox" name="delete[]" value="$article[id]"></td>
+
+        <td><input type="text" class="text" name="articlenew[{$article[id]}][title]" value="$article[title]" /></td>
+
+        <td><input type="text" class="text text60" name="articlenew[{$article[id]}][displayorder]" value="$article[displayorder]" /></td>
+
+        <td><input type="text" class="text" name="articlenew[{$article[id]}][keywords]" value="$article[keywords]" /></td>
+
+        <td><a href="{$BASESCRIPT}?action=faq&operation=edit&id=$article[id]">$lang[edit]</a></td>
+
+      </tr>
+
+	  <!--{/loop}-->
+
+	  </tbody>
+
+	  <tr>
+
+	  	<td></td>
+
+		<td colspan="4"><div class="addtr"><a href="###" id="addfaq">$lang[add_newoption]</a></div></td>
+
+	  </tr>
+
+	  <tr class="bottom">
+
+	  	<td><input type="checkbox" class="checkbox" onclick="checkAll(this,'delete[]')"> $lang[delete_check]</td>
+
+		<td colspan="4">
+
+			<input type="submit" class="button" value="$lang[submit]"> 
+
+			<input type="button" class="button" value="$lang[refresh]" onClick="LoadPage('page=$page')">
+
+		</td>
+
+	  </tr>
+
+  </table>
+
+  </form>
+
+</div>
+
+<script type="text/javascript">
+
+$("#faq tr").mouseover(function(){$(this).addClass("hover")}).mouseout(function(){$(this).removeClass("hover")});
+
+$("#addfaq").click(function(){
+
+	$("#faq").append('<tr><td></td><td><input type="text" class="text" name="newtitle[]" /></td>'+
+
+        '<td><input type="text" class="text text60" name="neworder[]" value="0" /></td>'+
+
+        '<td><input type="text" class="text" name="newkeywors[]" /></td><td></td></tr>');
+
+});
+
+</script>
+
+<!--{/if}-->

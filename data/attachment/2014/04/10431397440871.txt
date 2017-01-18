@@ -1,0 +1,1 @@
+./configure --prefix=/usr/local/pureftpd --with-cookie --with-ftpwho --with-language=simplified-chinese --with-minimal --with-mysql \

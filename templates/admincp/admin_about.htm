@@ -1,0 +1,197 @@
+<!--{if $operation=='add' || $operation=='edit'}-->
+
+<script type="text/javascript" src="source/ueditor/editor_config.js"></script>
+
+<script type="text/javascript" src="source/ueditor/editor_all_min.js"></script>
+
+<link rel="stylesheet" type="text/css" href="source/ueditor/themes/default/ueditor.css"/>
+
+<div class="toolbar">
+
+	<h2>$lang[about_manage]</h2>
+
+	<ul class="tab">
+
+		<li><a href="{$BASESCRIPT}?action=about"><span>$lang[manage]</span></a></li>
+
+		{if $operation=='add'}
+
+		<li class="current"><a href="{$BASESCRIPT}?action=about&operation=add"><span>$lang[add]</span></a></li>
+
+		{else}
+
+		<li class="current"><a href="{$BASESCRIPT}?action=about&operation=edit&id=$id"><span>$lang[edit]</span></a></li>
+
+		{/if}
+
+	</ul>
+
+</div>
+
+<div class="wrapper">
+
+	<form method="post" name="formabout" id="formabout" action="{$BASESCRIPT}?action=about&operation=$operation">
+
+	<input type="hidden" name="formsubmit" value="yes">
+
+	<input type="hidden" name="formhash" value="{FORMHASH}" />
+
+	<input type="hidden" name="id" value="$id" />
+
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="formtable" style="table-layout:fixed;">
+
+		<tr class="firstrow">
+
+		  <td class="bold" width="60">$lang[article_write]</td>
+
+		  <td></td>
+
+		</tr>
+
+		<tr>
+
+			<td class="bold">$lang[title]</td>
+
+			<td><input type="text" class="text text500" name="articlenew[title]" value="$article[title]"></td>
+
+		</tr>
+
+		<tr>
+
+		  <td class="bold">$lang[keywords]</td>
+
+		  <td><input type="text" class="text text500" name="articlenew[keywords]" value="$article[keywords]"></td>
+
+		</tr>
+
+		<tr>
+
+		  <td colspan="2">
+
+		  	<textarea id="editor" name="articlenew[content]">$article[content]</textarea>
+
+			<script type="text/javascript">
+
+			var editor = new baidu.editor.ui.Editor();
+
+			editor.render("editor");
+
+			</script>
+
+		  </td>
+
+		</tr>
+
+		<tr>
+
+		  <td colspan="2"><input type="submit" class="button submit" name="button-submit" value="$lang[submit]"></td>
+
+		</tr>
+
+	</table>
+
+	</form>
+
+</div>
+
+<script type="text/javascript">
+
+$("#formabout").submit(function(){
+
+	var title = $("input[name='articlenew[title]']").val();
+
+	if(!title){
+
+		alert("标题不能为空");
+
+		return false;
+
+	}
+
+	return true;
+
+})
+
+</script>
+
+<!--{else}-->
+
+<div class="toolbar">
+
+	<h2>$lang[about_manage]</h2>
+
+	<ul class="tab">
+
+		<li class="current"><a href="{$BASESCRIPT}?action=about"><span>$lang[manage]</span></a></li>
+
+		<li><a href="{$BASESCRIPT}?action=about&operation=add"><span>$lang[add]</span></a></li>
+
+	</ul>
+
+</div>
+
+<div class="wrapper">
+
+	<form name="about" method="post" action="{$BASESCRIPT}?action=about">
+
+	<input type="hidden" name="formsubmit" value="yes" />
+
+	<input type="hidden" name="formhash" value="{FORMHASH}" />
+
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="listtable">
+
+      <tr>
+
+        <th width="50"><input type="checkbox" class="checkbox" onclick="checkAll(this,'delete[]')"> $lang[delete_check]</th>
+
+        <th>$lang[title]</th>
+
+        <th width="100">$lang[about_lastedit]</th>
+
+        <th width="160">$lang[about_time]</th>
+
+        <th width="80">&nbsp;</th>
+
+      </tr>
+
+	  <tbody id="abouts">
+
+	  <!--{loop $articles $article}-->
+
+      <tr>
+
+        <td><input type="checkbox" class="checkbox" name="delete[]" value="$article[id]"></td>
+
+        <td><a href="about.php?id=$article[id]" target="_blank">$article[title]</a></td>
+
+        <td>$article[author]</td>
+
+        <td>$article[dateline]</td>
+
+        <td><a href="{$BASESCRIPT}?action=about&operation=edit&id=$article[id]">$lang[edit]</a></td>
+
+      </tr>
+
+	  <!--{/loop}-->
+
+	  </tbody>
+
+	  <tr class="bottom">
+
+		<td colspan="5"><input type="submit" class="button" value="$lang[submit]"> <input type="button" class="button" value="$lang[refresh]" onClick="LoadPage('page=$page')"></td>
+
+	  </tr>
+
+  </table>
+
+  </form>
+
+</div>
+
+<script type="text/javascript">
+
+$("#abouts tr").mouseover(function(){$(this).addClass("hover")}).mouseout(function(){$(this).removeClass("hover")});
+
+</script>
+
+<!--{/if}-->

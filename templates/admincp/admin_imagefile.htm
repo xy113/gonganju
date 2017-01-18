@@ -1,0 +1,287 @@
+{if $operation=='upload'}
+
+<script type="text/javascript" src="static/js/tangram.js"></script>
+
+<script type="text/javascript" src="static/js/imageup.js"></script>
+
+<div class="toolbar">
+
+	<h2>$lang[image_manage]</h2>
+
+	<ul class="tab">
+
+		<li><a href="$BASESCRIPT?action=$action&gid=$gid"><span>图片管理</span></a></li>
+
+		<li class="current"><a href="$BASESCRIPT?action=$action&operation=upload&gid=$gid"><span>上传图片</span></a></li>
+
+		<li><a href="$BASESCRIPT?action=image&cid=$image[cid]"><span>图组列表</span></a></li>
+
+	</ul>
+
+</div>
+
+<div class="wrapper">
+
+  <table width="100%" border="0" cellspacing="0" cellpadding="0" class="formtable">
+
+      <tr>
+
+        <td id="flashContainer"></td>
+
+      </tr>
+
+      <tr>
+
+        <td><input type="button" id="upload" value=""> <b class="button" onClick="window.location.href='$BASESCRIPT?action=$action&gid=$gid';" id="btnok" style="display:none;" tabindex="0"><span>提交</span></b></td>
+
+      </tr>
+
+    </table>
+
+</div>
+
+<script type="text/javascript">
+
+//全局变量
+
+var imageUrls = [],          //用于保存从服务器返回的图片信息数组
+
+    selectedImageCount = 0;  //当前已选择的但未上传的图片数量
+
+window.onload = function(){
+
+	var timeout;
+
+	//创建Flash相关的参数集合
+
+	var flashOptions = {
+
+		container:"flashContainer",                                                    //flash容器id
+
+		//url:editor.options.imageUrl,                                           // 上传处理页面的url地址
+
+		url:'http://$_SERVER[HTTP_HOST]/$BASESCRIPT',
+
+		ext:'{"action":"$action","operation":"upload","gid":"$gid","formsubmit":"yes","formhash":"{FORMHASH}"}',                                 //可向服务器提交的自定义参数列表
+
+		fileType:'{"description":"图片", "extension":"*.gif;*.jpeg;*.png;*.jpg"}',     //上传文件格式限制
+
+		flashUrl:'static/uploader.swf',                                                  //上传用的flash组件地址
+
+		width:608,          //flash的宽度
+
+		height:360,         //flash的高度
+
+		gridWidth:121,     // 每一个预览图片所占的宽度
+
+		gridHeight:120,    // 每一个预览图片所占的高度
+
+		picWidth:100,      // 单张预览图片的宽度
+
+		picHeight:100,     // 单张预览图片的高度
+
+		uploadDataFieldName:'imgfile',    // POST请求中图片数据的key
+
+		picDescFieldName:'pictitle',      // POST请求中图片描述的key
+
+		maxSize:2,                         // 文件的最大体积,单位M
+
+		compressSize:1,                   // 上传前如果图片体积超过该值，会先压缩,单位M
+
+		maxNum:32,                         // 单次最大可上传多少个文件
+
+		backgroundUrl:'',                 // flash界面的背景图片,留空默认
+
+		listBackgroundUrl:'',            // 单个预览框背景，留空默认
+
+		buttonUrl:'',                     // 上传按钮背景，留空默认
+
+		compressSide:'',                 //等比压缩的基准，0为按照最长边，1为按照宽度，2为按照高度
+
+		compressLength:''        //能接受的最大边长，超过该值Flash会自动等比压缩
+
+	};
+
+	//回调函数集合，支持传递函数名的字符串、函数句柄以及函数本身三种类型
+
+	var callbacks={
+
+		// 选择文件的回调
+
+		selectFileCallback: function(selectFiles){
+
+			selectedImageCount += selectFiles.length;
+
+			if(selectedImageCount) baidu.g("upload").style.display = "";
+
+		},
+
+		// 删除文件的回调
+
+		deleteFileCallback: function(delFiles){
+
+			selectedImageCount -= delFiles.length;
+
+			if (!selectedImageCount) {
+
+				baidu.g("upload").style.display = "none";
+
+				//dialog.buttons[0].setDisabled(false);         //没有选择图片时重新点亮按钮
+
+			}
+
+		},
+
+
+
+		// 单个文件上传完成的回调
+
+		uploadCompleteCallback: function(data){
+
+			clearTimeout(timeout);
+
+			try{
+
+				var info = eval("(" + data.info + ")");
+
+				info && imageUrls.push(info);
+
+				selectedImageCount--;
+
+			}catch(e){}
+
+
+
+		},
+
+		// 单个文件上传失败的回调,
+
+		uploadErrorCallback: function (data){
+
+			clearTimeout(timeout);
+
+			if(!data.info){
+
+				alert("网络连接失败！请检查网络或者提交页面地址是否正确！")
+
+			}
+
+			//console && console.log(data);
+
+		},
+
+		// 全部上传完成时的回调
+
+		allCompleteCallback: function(){
+
+			baidu.g("btnok").style.display = "";
+
+			//dialog.buttons[0].setDisabled(false);    //上传完毕后点亮按钮
+
+		},
+
+		// 开始上传某个文件时的回调
+
+		startUploadCallback: function(){
+
+			timeout = setTimeout(function(){
+
+				clearTimeout(timeout);
+
+				if(!confirm("后台响应超时，点击确定继续等待，点击取消关闭上传框！")){
+
+					//dialog.close();
+
+				}
+
+			},100000);
+
+		}
+
+		// 文件超出限制的最大体积时的回调
+
+		//exceedFileCallback: 'exceedFileCallback',
+
+	};
+
+	imageUploader.init(flashOptions,callbacks);
+
+};
+
+</script>
+
+{else}
+
+<div class="toolbar">
+
+	<h2>$lang[image_manage]</h2>
+
+	<ul class="tab">
+
+		<li class="current"><a href=""><span>图片管理</span></a></li>
+
+		<li><a href="$BASESCRIPT?action=$action&operation=upload&gid=$gid"><span>上传图片</span></a></li>
+
+		<li><a href="$BASESCRIPT?action=image&cid=$image[cid]"><span>图组列表</span></a></li>
+
+	</ul>
+
+</div>
+
+<div class="wrapper">
+
+	<form action="" method="post">
+
+		<input type="hidden" name="formsubmit" value="yes" />
+
+  		<input type="hidden" name="formhash" value="{FORMHASH}" />
+
+	  <table width="100%" border="0" cellspacing="0" cellpadding="0" class="listtable">
+
+	  	<th colspan="3">图片列表</th>
+
+	  	{loop $files $fl}
+
+        <tr>
+
+			<td width="50"><input type="checkbox" name="delete[]" value="$fl[fid]"></td>
+
+          <td width="180"><a href="$fl[attachment]" target="_blank"><img src="$fl[thumbnail]" width="150" border="0"></a></td>
+
+          <td>
+
+		  	<ul class="picinfo">
+
+				<li>名称：{$fl[filename]}</li>
+
+				<li>时间：{$fl[filetime]}　大小：{$fl[filesize]}KB</li>
+
+				<li><textarea name="description[{$fl[fid]}]" class="textarea" style="width:500px; height:50px;">$fl[description]</textarea></li>
+
+			</ul>
+
+		  </td>
+
+        </tr>
+
+		{/loop}
+
+		<tr class="bottom">
+
+		<td><input type="checkbox" onClick="checkAll(this,'delete[]')"> 删除</td>
+
+		<td colspan="2">
+
+		<span class="pagebox">$pagelink</span>
+
+		<input type="submit" class="button" value="$lang[submit]"> <input type="button" class="button" value="$lang[refresh]" onClick="LoadPage('page=$page')"></td>
+
+	  </tr>
+
+      </table>
+
+	</form>
+
+</div>
+
+{/if}

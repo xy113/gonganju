@@ -1,0 +1,311 @@
+<div class="toolbar">
+
+	<h2>导航栏设置</h2>
+
+</div>
+
+<div class="wrapper">
+
+	<form name="about" method="post" action="{$BASESCRIPT}?action=$action">
+
+	<input type="hidden" name="formsubmit" value="yes" />
+
+	<input type="hidden" name="formhash" value="{FORMHASH}" />
+
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="listtable">
+
+      <tr>
+
+        <th width="50"><input type="checkbox" onclick="checkAll(this,'delete[]')"> 删?</th>
+
+        <th width="80">排序</th>
+
+        <th width="300">标题</th>
+
+        <th>链接</th>
+
+        <th width="80">位置</th>
+
+        <th width="80">新窗口打开</th>
+
+        <th width="60">可用</th>
+
+      </tr>
+
+	  <tr><th colspan="7">顶部导航</th></tr>
+
+	  {loop $navs[top][0] $nav}
+
+	  <tbody id="nav_$nav[id]">
+
+      <tr>
+
+        <td><input type="checkbox" name="delete[]" value="$nav[id]"></td>
+
+        <td><input type="text" class="text text60" name="navnew[{$nav[id]}][displayorder]" value="$nav[displayorder]"></td>
+
+        <td><input type="text" class="text text160" style="font-weight:bold;" name="navnew[{$nav[id]}][title]" value="$nav[title]"> <a href="###" class="addcat" onclick="addChild($nav[id],'top')">添加子导航</a></td>
+
+        <td><input type="text" class="text" name="navnew[{$nav[id]}][url]" value="$nav[url]"></td>
+
+        <td>
+
+			<select class="select" name="navnew[{$nav[id]}][position]">
+
+				<option value="top" selected="selected">顶部</option>
+
+				<option value="mid">中部</option>
+
+				<option value="bot">底部</option>
+
+			</select>
+
+		</td>
+
+        <td><input type="checkbox" name="navnew[{$nav[id]}][open]" value="1"{if $nav[open]} checked="checked"{/if}></td>
+
+        <td><input type="checkbox" name="navnew[{$nav[id]}][display]" value="1"{if $nav[display]} checked="checked"{/if}></td>
+
+      </tr>
+
+	  {loop $navs[top][$nav[id]] $sub}
+
+	  <tr>
+
+        <td><input type="checkbox" name="delete[]" value="$sub[id]"></td>
+
+        <td><input type="text" class="text text60" name="navnew[{$sub[id]}][displayorder]" value="$sub[displayorder]"></td>
+
+        <td>|——<input type="text" class="text text160" name="navnew[{$sub[id]}][title]" value="$sub[title]"></td>
+
+        <td><input type="text" class="text" name="navnew[{$sub[id]}][url]" value="$sub[url]"></td>
+
+        <td>
+
+			<select class="select" name="navnew[{$sub[id]}][position]">
+
+				<option value="top" selected="selected">顶部</option>
+
+				<option value="mid">中部</option>
+
+				<option value="bot">底部</option>
+
+			</select>
+
+		</td>
+
+        <td><input type="checkbox" name="navnew[{$sub[id]}][open]" value="1"{if $sub[open]} checked="checked"{/if}></td>
+
+        <td><input type="checkbox" name="navnew[{$sub[id]}][display]" value="1"{if $sub[display]} checked="checked"{/if}></td>
+
+      </tr>
+
+	  {/loop}
+
+	  </tbody>
+
+	  {/loop}
+
+	  <tr><th colspan="7">中部导航</th></tr>
+
+	  {loop $navs[mid][0] $nav}
+
+	  <tbody id="nav_$nav[id]">
+
+      <tr>
+
+        <td><input type="checkbox" name="delete[]" value="$nav[id]"></td>
+
+        <td><input type="text" class="text text60" name="navnew[{$nav[id]}][displayorder]" value="$nav[displayorder]"></td>
+
+        <td><input type="text" class="text text160" style="font-weight:bold;" name="navnew[{$nav[id]}][title]" value="$nav[title]"> <a href="###" class="addcat" onclick="addChild($nav[id],'mid')">添加子导航</a></td>
+
+        <td><input type="text" class="text" name="navnew[{$nav[id]}][url]" value="$nav[url]"></td>
+
+        <td>
+
+			<select class="select" name="navnew[{$nav[id]}][position]">
+
+				<option value="top">顶部</option>
+
+				<option value="mid" selected="selected">中部</option>
+
+				<option value="bot">底部</option>
+
+			</select>
+
+		</td>
+
+        <td><input type="checkbox" name="navnew[{$nav[id]}][open]" value="1"{if $nav[open]} checked="checked"{/if}></td>
+
+        <td><input type="checkbox" name="navnew[{$nav[id]}][display]" value="1"{if $nav[display]} checked="checked"{/if}></td>
+
+      </tr>
+
+	  {loop $navs[mid][$nav[id]] $sub}
+
+	  <tr>
+
+        <td><input type="checkbox" name="delete[]" value="$sub[id]"></td>
+
+        <td><input type="text" class="text text60" name="navnew[{$sub[id]}][displayorder]" value="$sub[displayorder]"></td>
+
+        <td>|——<input type="text" class="text text160" name="navnew[{$sub[id]}][title]" value="$sub[title]"></td>
+
+        <td><input type="text" class="text" name="navnew[{$sub[id]}][url]" value="$sub[url]"></td>
+
+        <td>
+
+			<select class="select" name="navnew[{$sub[id]}][position]">
+
+				<option value="top">顶部</option>
+
+				<option value="mid" selected="selected">中部</option>
+
+				<option value="bot">底部</option>
+
+			</select>
+
+		</td>
+
+        <td><input type="checkbox" name="navnew[{$sub[id]}][open]" value="1"{if $sub[open]} checked="checked"{/if}></td>
+
+        <td><input type="checkbox" name="navnew[{$sub[id]}][display]" value="1"{if $sub[display]} checked="checked"{/if}></td>
+
+      </tr>
+
+	  {/loop}
+
+	  </tbody>
+
+	  {/loop}
+
+	  <tr><th colspan="7">底部导航</th></tr>
+
+	  {loop $navs[bot][0] $nav}
+
+	  <tbody id="nav_$nav[id]">
+
+      <tr>
+
+        <td><input type="checkbox" name="delete[]" value="$nav[id]"></td>
+
+        <td><input type="text" class="text text60" name="navnew[{$nav[id]}][displayorder]" value="$nav[displayorder]"></td>
+
+        <td><input type="text" class="text text160" style="font-weight:bold;" name="navnew[{$nav[id]}][title]" value="$nav[title]"> <a href="###" class="addcat" onclick="addChild($nav[id],'bot')">添加子导航</a></td>
+
+        <td><input type="text" class="text" name="navnew[{$nav[id]}][url]" value="$nav[url]"></td>
+
+        <td>
+
+			<select class="select" name="navnew[{$nav[id]}][position]">
+
+				<option value="top">顶部</option>
+
+				<option value="mid">中部</option>
+
+				<option value="bot" selected="selected">底部</option>
+
+			</select>
+
+		</td>
+
+        <td><input type="checkbox" name="navnew[{$nav[id]}][open]" value="1"{if $nav[open]} checked="checked"{/if}></td>
+
+        <td><input type="checkbox" name="navnew[{$nav[id]}][display]" value="1"{if $nav[display]} checked="checked"{/if}></td>
+
+      </tr>
+
+	  {loop $navs[bot][$nav[id]] $sub}
+
+	  <tr>
+
+        <td><input type="checkbox" name="delete[]" value="$sub[id]"></td>
+
+        <td><input type="text" class="text text60" name="navnew[{$sub[id]}][displayorder]" value="$sub[displayorder]"></td>
+
+        <td>|——<input type="text" class="text text160" name="navnew[{$sub[id]}][title]" value="$sub[title]"></td>
+
+        <td><input type="text" class="text" name="navnew[{$sub[id]}][url]" value="$sub[url]"></td>
+
+        <td>
+
+			<select class="select" name="navnew[{$sub[id]}][position]">
+
+				<option value="top">顶部</option>
+
+				<option value="mid">中部</option>
+
+				<option value="bot" selected="selected">底部</option>
+
+			</select>
+
+		</td>
+
+        <td><input type="checkbox" name="navnew[{$sub[id]}][open]" value="1"{if $sub[open]} checked="checked"{/if}></td>
+
+        <td><input type="checkbox" name="navnew[{$sub[id]}][display]" value="1"{if $sub[display]} checked="checked"{/if}></td>
+
+      </tr>
+
+	  {/loop}
+
+	  </tbody>
+
+	  {/loop}
+
+	  <tbody id="newnav"></tbody>
+
+	  <tr>
+
+	  	<td></td>
+
+	  	<td colspan="6"><a href="###" class="addcat" id="addnav">添加新导航</a></td>
+
+	  </tr>
+
+	  <tr class="bottom">
+
+		<td colspan="7"><input type="submit" class="button" value="$lang[submit]"> <input type="button" class="button" value="$lang[refresh]" onClick="LoadPage()"></td>
+
+	  </tr>
+
+    </table>
+
+  	</form>
+
+</div>
+
+<script type="text/javascript">
+
+function addChild(id,pos){
+
+	$("#nav_"+id).append('<tr><td><input type="hidden" name="newfid[]" value="'+id+'"></td><td><input type="text" class="text text60" name="neworder[]" value="0"></td>'+
+
+        '<td>|——<input type="text" class="text text160" name="newtitle[]"></td><td><input type="text" class="text" name="newurl[]"></td>'+
+
+        '<td><select class="select" name="newposition[]">'+
+
+		'<option value="top"'+(pos=='top' ? ' selected="selected"' : '')+'>顶部</option>'+
+
+		'<option value="mid"'+(pos=='mid' ? ' selected="selected"' : '')+'>中部</option>'+
+
+		'<option value="bot"'+(pos=='bot' ? ' selected="selected"' : '')+'>底部</option>'+
+
+		'</select></td><td><input type="checkbox" name="newopen[]" value="1"></td><td><input type="checkbox" name="newdisplay[]" value="1" checked="checked"></td></tr>');
+
+}
+
+$("#addnav").click(function(){
+
+	$("#newnav").append('<tr><td><input type="hidden" name="newfid[]" value="0"></td><td><input type="text" class="text text60" name="neworder[]" value="0"></td>'+
+
+        '<td><input type="text" class="text text160" style="font-weight:bold;" name="newtitle[]"></td><td><input type="text" class="text" name="newurl[]"></td><td>'+
+
+		'<select class="select" name="newposition[]"><option value="top">顶部</option><option value="mid">中部</option><option value="bot">底部</option></select>'+
+
+		'</td><td><input type="checkbox" name="newopen[]" value="1"></td><td><input type="checkbox" name="newdisplay[]" value="1" checked="checked"></td></tr>');
+
+});
+
+</script>

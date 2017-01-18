@@ -1,0 +1,271 @@
+<!--{if $operation=='edit'}-->
+
+<div class="toolbar">
+
+	<h2>$lang[usergroup_admingroup] - $admingroup[grouptitle](admingid:$admingid)</h2>
+
+	<ul class="tab">
+
+		<li><a href="$BASESCRIPT?action=admingroups"><span>$lang[manage]</span></a></li>
+
+		<li class="current"><a href="$BASESCRIPT?action=admingroups&operation=edit&admingid=$admingid"><span>$lang[edit]</span></a></li>
+
+	</ul>
+
+</div>
+
+<div class="wrapper">
+
+	<form method="post" name="admingroup" id="admingroup" action="$BASESCRIPT?action=admingroups&operation=edit">
+
+	<input type="hidden" name="formsubmit" value="yes" />
+
+	<input type="hidden" name="formhash" value="{FORMHASH}" />
+
+	<input type="hidden" name="admingid" value="$admingid" />
+
+  	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="formtable" id="actions">
+
+      <tr class="firstrow">
+
+        <td colspan="2">$lang[usergroup_detail]</td>
+
+      </tr>
+
+      <tr>
+
+        <td class="bold" width="200" valign="top"><label class="actioncat"><input type="checkbox" class="checkbox" name="disabledactions[]" value="settings"$checked[settings] /> $lang[admingroup_action_settings]</label></td>
+
+        <td valign="top">
+
+			<ul class="actionlist">
+
+				<li><label><input type="checkbox" class="checkbox" name="disabledactions[]" value="settings_basic"$checked[settings_basic] /> $lang[admingroup_action_settings_basic]</label></li>
+
+				<li><label><input type="checkbox" class="checkbox" name="disabledactions[]" value="settings_optimization"$checked[settings_optimization] /> $lang[admingroup_action_settings_optimization]</label></li>
+
+				<li><label><input type="checkbox" class="checkbox" name="disabledactions[]" value="settings_attachment"$checked[settings_attachment] /> $lang[admingroup_action_settings_attachment]</label></li>
+
+				<li><label><input type="checkbox" class="checkbox" name="disabledactions[]" value="settings_image"$checked[settings_image] /> $lang[admingroup_action_settings_image]</label></li>
+
+				<li><label><input type="checkbox" class="checkbox" name="disabledactions[]" value="settings_register"$checked[settings_register] /> $lang[admingroup_action_settings_register]</label></li>
+
+				<li><label><input type="checkbox" class="checkbox" name="disabledactions[]" value="settings_randcode"$checked[settings_randcode] /> $lang[admingroup_action_settings_randcode]</label></li>
+
+				<li><label><input type="checkbox" class="checkbox" name="disabledactions[]" value="settings_contact"$checked[settings_contact] /> $lang[admingroup_action_settings_contact]</label></li>
+
+				<li><label><input type="checkbox" class="checkbox" name="disabledactions[]" value="cplog"$checked[cplog] /> $lang[admingroup_action_cplog]</label></li>
+
+				<li><label><input type="checkbox" class="checkbox" name="disabledactions[]" value="nav"$checked[nav] /> $lang[admingroup_action_nav]</label></li>
+
+				<li><label><input type="checkbox" class="checkbox" name="disabledactions[]" value="about"$checked[about] /> $lang[admingroup_action_about]</label></li>
+
+			</ul>
+
+		</td>
+
+      </tr>
+
+       <tr>
+
+        <td class="bold"><label class="actioncat"><input type="checkbox" class="checkbox" name="disabledactions[]" value="member"$checked[member] /> $lang[admingroup_action_member]</label></td>
+
+        <td>
+
+			<ul class="actionlist">
+
+				<li><label><input type="checkbox" class="checkbox" name="disabledactions[]" value="member_add"$checked[member_add] /> $lang[admingroup_action_member_add]</label></li>
+
+				<li><label><input type="checkbox" class="checkbox" name="disabledactions[]" value="member_edit"$checked[member_edit] /> $lang[admingroup_action_member_edit]</label></li>
+
+				<li><label><input type="checkbox" class="checkbox" name="disabledactions[]" value="admingroups"$checked[admingroups] /> $lang[admingroup_action_admingroup_edit]</label></li>
+
+				<li><label><input type="checkbox" class="checkbox" name="disabledactions[]" value="usergroups"$checked[usergroups] /> $lang[admingroup_action_usergroup_edit]</label></li>
+
+			</ul>
+
+		</td>
+
+      </tr>
+
+      <tr>
+
+        <td class="bold"><label class="actioncat"><input type="checkbox" class="checkbox" name="disabledactions[]" value="articles"$checked[articles] /> $lang[admingroup_action_article]</label></td>
+
+        <td>
+
+			<ul class="actionlist">
+
+				<li><label><input type="checkbox" class="checkbox" name="disabledactions[]" value="articles_add"$checked[articles_add] /> $lang[admingroup_action_article_add]</label></li>
+
+				<li><label><input type="checkbox" class="checkbox" name="disabledactions[]" value="articles_edit"$checked[articles_edit] /> $lang[admingroup_action_article_edit]</label></li>
+
+				<li><label><input type="checkbox" class="checkbox" name="disabledactions[]" value="articlecat"$checked[articlecat] /> $lang[admingroup_action_articlecat]</label></li>
+
+				<li><label><input type="checkbox" class="checkbox" name="disabledactions[]" value="articlecat_edit"$checked[articlecat_edit] /> $lang[admingroup_action_articlecat_edit]</label></li>
+
+				<li><label><input type="checkbox" class="checkbox" name="disabledactions[]" value="articlecat_delete"$checked[articlecat_delete] /> $lang[admingroup_action_articlecat_delete]</label></li>
+
+				<li><label><input type="checkbox" class="checkbox" name="disabledactions[]" value="source"$checked[source] /> $lang[admingroup_action_article_source]</label></li>
+
+			</ul>
+
+		</td>
+
+      </tr>
+
+       <tr>
+
+        <td class="bold"><label class="actioncat"><input type="checkbox" class="checkbox" name="disabledactions[]" value="goods"$checked[goods] /> $lang[admingroup_action_goods]</label></td>
+
+        <td>
+
+			<ul class="actionlist">
+
+				<li><label><input type="checkbox" class="checkbox" name="disabledactions[]" value="goods_add"$checked[goods_add] /> $lang[admingroup_action_goods_add]</label></li>
+
+				<li><label><input type="checkbox" class="checkbox" name="disabledactions[]" value="goods_edit"$checked[goods_edit] /> $lang[admingroup_action_goods_edit]</label></li>
+
+				<li><label><input type="checkbox" class="checkbox" name="disabledactions[]" value="goodscat"$checked[goodscat] /> $lang[admingroup_action_goodscat]</label></li>
+
+				<li><label><input type="checkbox" class="checkbox" name="disabledactions[]" value="goodscat_edit"$checked[goodscat_edit] /> $lang[admingroup_action_goodscat_edit]</label></li>
+
+				<li><label><input type="checkbox" class="checkbox" name="disabledactions[]" value="goodscat_delete"$checked[goodscat_delete] /> $lang[admingroup_action_goodscat_delete]</label></li>
+
+				<li><label><input type="checkbox" class="checkbox" name="disabledactions[]" value="goodstypes"$checked[goodstypes] /> $lang[admingroup_action_goods_types]</label></li>
+
+				<li><label><input type="checkbox" class="checkbox" name="disabledactions[]" value="goodstypes_typeoption"$checked[goodstypes_typeoption] /> $lang[admingroup_action_goods_typeoption]</label></li>
+
+			</ul>
+
+		</td>
+
+      </tr>
+
+       <tr>
+
+        <td class="bold"><label class="actioncat"><input type="checkbox" class="checkbox" name="disabledactions[]" value="task"$checked[task] /> $lang[admingroup_action_task]</label></td>
+
+        <td>
+
+			<ul class="actionlist">
+
+				<li><label><input type="checkbox" class="checkbox" name="disabledactions[]" value="announce"$checked[announce] /> $lang[admingroup_action_announce]</label></li>
+
+				<li><label><input type="checkbox" class="checkbox" name="disabledactions[]" value="friendlink"$checked[friendlink] /> $lang[admingroup_action_friendlink]</label></li>
+
+				<li><label><input type="checkbox" class="checkbox" name="disabledactions[]" value="faq"$checked[faq] /> $lang[admingroup_action_faq]</label></li>
+
+				<li><label><input type="checkbox" class="checkbox" name="disabledactions[]" value="feedback"$checked[feedback] /> $lang[admingroup_action_feedback]</label></li>
+
+			</ul>
+
+		</td>
+
+      </tr>
+
+      <tr>
+
+        <td colspan="2"><input type="submit" class="button submit" value="$lang[submit]" /></td>
+
+      </tr>
+
+    </table>
+
+	</form>
+
+</div>
+
+<!--{else}-->
+
+<div class="toolbar">
+
+	<h2>$lang[usergroup_admingroup]</h2>
+
+</div>
+
+<div class="wrapper">
+
+  <form method="post" name="admingroup" action="{$BASESCRIPT}?action=admingroups">
+
+  <input type="hidden" name="formsubmit" value="yes" />
+
+  <input type="hidden" name="formhash" value="{FORMHASH}" />
+
+  <table width="100%" border="0" cellspacing="0" cellpadding="0" class="listtable">
+
+	<tr>
+
+	  <th width="50"><input type="checkbox" class="checkbox" onclick="checkAll(this,'delete[]')" /> $lang[delete_check]</th>
+
+	  <th width="30">$lang[usergroup_groupid]</th>
+
+	  <th width="300">$lang[usergroup_grouptitle]</th>
+
+	  <th width="100">$lang[usergroup_typename]</th>
+
+	  <th width="160">$lang[usergroup_adminlevel]</th>
+
+	  <th></th>
+
+	</tr>
+
+	<tbody id="grouplist">
+
+	<!--{loop $admingroups $gg}-->
+
+	<tr onmouseover="this.className='hover'" onmouseout="this.className=''">
+
+	  <td><input {if $gg[type]=='system'} disabled="disabled"{else} name="delete[]"{/if} type="checkbox" value="{$gg[groupid]}" /></td>
+
+	  <td>$gg[groupid]</td>
+
+	  <td><input type="text" class="text text200" name="grouptitle[{$gg[groupid]}]" value="$gg[grouptitle]" /></td>
+
+	  <td>$gg[typename]</td>
+
+	  <td>$gg[level]</td>
+
+	  <td><a href="{$BASESCRIPT}?action=admingroups&operation=edit&admingid=$gg[admingid]">$lang[usergroup_detail]</a></td>
+
+	</tr>
+
+	<!--{/loop}-->
+
+	</tbody>
+
+	<tr>
+
+	  <td></td>
+
+	  <td colspan="5"><div class="addtr"><a href="javascript:;" id="addgroup">$lang[usergroup_addnew]</a></div></td>
+
+	</tr>
+
+	<tr class="bottom">
+
+		<td><input type="checkbox" class="checkbox" onclick="checkAll(this,'delete[]')" /> $lang[delete_check]</td>
+
+		<td colspan="5"><input type="submit" class="button" name="button-submit" value="$lang[submit]" /> <input type="button" class="button" value="$lang[refresh]" onclick="LoadPage()" /></td>
+
+	</tr>
+
+  </table>
+
+  </form>
+
+</div>
+
+<script type="text/javascript">
+
+$("#addgroup").click(function(){
+
+	$("#grouplist").append('<tr><td></td><td></td><td><input type="text" class="text text200" name="newgrouptitle[]" value="$lang[usergroup_newgroupname]"></td><td>$lang[usergroup_type][custom]</td>'+
+
+	'<td><select name="newradminid[]"><option value="1">$lang[usergroup_level][1]</option><option value="2">$lang[usergroup_level][2]</option><option value="3">$lang[usergroup_level][3]</option></select></td><td></td></tr>');
+
+});
+
+</script>
+
+<!--{/if}-->

@@ -1,0 +1,19 @@
+<div class="top">
+	<div class="inner">
+		<span class="right" id="timer"></span>
+		欢迎访问$config[sitename]
+		<script type="text/javascript">setInterval("document.getElementById('timer').innerHTML='今天是:'+new Date().toLocaleString()+' 星期'+'日一二三四五六'.charAt(new Date().getDay());",1000);</script>
+	</div>
+</div>
+<div class="warpper">
+	<img src="static/images/logo.png" border="0" />
+</div>
+<ul id="nav">
+	<li><a href="/">首页</a></li>
+	{loop $CACHE[nav] $nav}
+	{if $nav[position]=='mid'}
+	<li><a href="$nav[url]"{if $nav[open]} target="_blank"{/if}>$nav[title]</a></li>
+	{/if}
+	{/loop}
+</ul>
+<div class="warpper blank"></div>

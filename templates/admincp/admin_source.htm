@@ -1,0 +1,87 @@
+<div class="toolbar">
+
+	<h2>$lang[source_manage] - $lang['source_'.$type]</h2>
+
+</div>
+
+<div class="wrapper">
+
+  <form name="form1" method="post" action="">
+
+  	<input type="hidden" name="formsubmit" value="yes">
+
+	<input type="hidden" name="formhash" value="{FORMHASH}">
+
+	<input type="hidden" name="type" value="$type">
+
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="listtable">
+
+      <tr>
+
+        <th width="50"><input type="checkbox" class="checkbox" onclick="checkAll(this,'delete[]')"> $lang[delete_check]</th>
+
+        <th width="80">$lang[displayorder]</th>
+
+        <th width="200">$lang[source_sitename]</th>
+
+        <th>$lang[source_siteurl]</th>
+
+      </tr>
+
+	  {loop $sources $source}
+
+      <tr onmouseover="$(this).addClass('hover')" onmouseout="$(this).removeClass('hover')">
+
+        <td><input type="checkbox" class="checkbox" name="delete[]" value="$source[siteid]"></td>
+
+        <td><input type="text" class="text text60" name="sitenew[{$source[siteid]}][displayorder]" value="$source[displayorder]"></td>
+
+        <td><input type="text" class="text text160" name="sitenew[{$source[siteid]}][sitename]" value="$source[sitename]"></td>
+
+        <td><input type="text" class="text" name="sitenew[{$source[siteid]}][siteurl]" value="$source[siteurl]"></td>
+
+      </tr>
+
+	  {/loop}
+
+	  <tbody id="newsource"></tbody>
+
+	  <tr>
+
+	  	<td></td>
+
+		<td colspan="3"><div class="addtr"><a href="###" id="addsource">$lang[source_addnew]</a></div></td>
+
+	  </tr>
+
+	  <tr class="bottom">
+
+	  	<td><input type="checkbox" class="checkbox" onclick="checkAll(this,'delete[]')"> $lang[delete_check]</td>
+
+		<td colspan="3">
+
+			<input type="submit" class="button" value="$lang[submit]">
+
+			<input type="button" class="button" value="$lang[refresh]" onclick="LoadPage('type=$type')">
+
+		</td>
+
+	  </tr>
+
+    </table>
+
+    </form>
+
+</div>
+
+<script type="text/javascript">
+
+$("#addsource").click(function(){
+
+	$("#newsource").append('<tr><td><input type="hidden" name="newtype[]" value="$type"></td><td><input type="text" class="text text60" name="neworder[]" value="0"></td>'+
+
+        '<td><input type="text" class="text text160" name="newsitename[]"></td><td><input type="text" class="text" name="newsiteurl[]"></td></tr>');
+
+})
+
+</script>

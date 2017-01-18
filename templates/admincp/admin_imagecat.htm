@@ -1,0 +1,283 @@
+<!--{if $operation=='edit'}-->
+
+<div class="toolbar">
+
+	<h2>$lang[image_category]</h2>
+
+	<ul class="tab">
+
+		<li><a href="$BASESCRIPT?action=$action"><span>$lang[manage]</span></a></li>
+
+		<li class="current"><a href="$BASESCRIPT?action=$action&operation=edit&cid=$cid"><span>$lang[edit]</span></a></li>
+
+	</ul>
+
+</div>
+
+<div class="wrapper">
+
+  <form name="form1" method="post" action="$BASESCRIPT?action=$action&operation=edit">
+
+  	<input type="hidden" name="formsubmit" value="yes">
+
+	<input type="hidden" name="formhash" value="{FORMHASH}">
+
+	<input type="hidden" name="cid" value="$cid">
+
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="formtable">
+
+	   <tr class="firstrow">
+
+        <td colspan="2">$lang[category_edit]</td>
+
+      </tr>
+
+      <tr>
+
+        <td class="bold" width="360">$lang[category_name]</td>
+
+        <td>&nbsp;</td>
+
+      </tr>
+
+      <tr>
+
+        <td><input type="text" class="text" name="categorynew[name]" value="$category[name]"></td>
+
+        <td>&nbsp;</td>
+
+      </tr>
+
+      <tr>
+
+        <td class="bold">$lang[category_parent]</td>
+
+        <td>&nbsp;</td>
+
+      </tr>
+
+      <tr>
+
+        <td>
+
+			<select name="categorynew[fid]" class="select" style="width:300px;">
+
+			<option value="0">------</option>
+
+			{loop $categories $cat}
+
+			<option value="$cat[cid]"{if $category[fid]==$cat[cid]} selected="selected"{/if}>$cat[name]</option>
+
+			{/loop}
+
+			</select>
+
+		</td>
+
+        <td>&nbsp;</td>
+
+      </tr>
+
+      <tr>
+
+        <td class="bold">$lang[displayorder]</td>
+
+        <td>&nbsp;</td>
+
+      </tr>
+
+      <tr>
+
+        <td><input type="text" class="text" name="categorynew[displayorder]" value="$category[displayorder]"></td>
+
+        <td>&nbsp;</td>
+
+      </tr>
+
+      <tr>
+
+        <td class="bold">$lang[category_status]　<input type="checkbox" class="checkbox" value="1" name="categorynew[status]"{if $category[status]} checked="checked"{/if}></td>
+
+        <td></td>
+
+      </tr>
+
+      <tr>
+
+        <td class="bold">$lang[keywords]</td>
+
+        <td>&nbsp;</td>
+
+      </tr>
+
+      <tr>
+
+        <td><input type="text" class="text" name="categorynew[keywords]" value="$category[keywords]"></td>
+
+        <td>&nbsp;</td>
+
+      </tr>
+
+	  <tr>
+
+        <td class="bold">$lang[description]</td>
+
+        <td>&nbsp;</td>
+
+      </tr>
+
+      <tr>
+
+        <td><textarea name="categorynew[description]" class="textarea" style="width:300px; height:100px;">$category[description]</textarea></td>
+
+        <td>&nbsp;</td>
+
+      </tr>
+
+	  <tr>
+
+        <td><input type="submit" class="button submit" value="$lang[submit]"></td>
+
+        <td>&nbsp;</td>
+
+      </tr>
+
+    </table>
+
+    </form>
+
+</div>
+
+<!--{else}-->
+
+<div class="toolbar">
+
+	<h2>$lang[image_category]</h2>
+
+</div>
+
+<div class="wrapper">
+
+  <form name="$action" method="post" action="$BASESCRIPT?action=$action">
+
+  	<input type="hidden" name="formsubmit" value="yes">
+
+	<input type="hidden" name="formhash" value="{FORMHASH}">
+
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="listtable">
+
+      <tr>
+
+        <th width="50">$lang[category_id]</th>
+
+        <th width="80">$lang[displayorder]</th>
+
+        <th width="400">$lang[category_name]</th>
+
+        <th width="80">$lang[category_records]</th>
+
+        <th width="90">$lang[category_status]</th>
+
+        <th>&nbsp;</th>
+
+      </tr>
+
+	  <!--{loop $categories[category] $cat}-->
+
+	  <tbody id="cat_$cat[cid]">
+
+	  <tr onMouseOver="$(this).addClass('hover')" onMouseOut="$(this).removeClass('hover')">
+
+        <td>$cat[cid]</td>
+
+        <td><input type="text" class="text text60" name="categorynew[{$cat[cid]}][displayorder]" value="$cat[displayorder]"></td>
+
+        <td><input type="text" class="text text160" style="font-weight:bold;" name="categorynew[{$cat[cid]}][name]" value="$cat[name]"> <a href="###" class="addcat" onclick="addChild($cat[cid])">$lang[category_addchild]</a></td>
+
+        <td>$cat[records]</td>
+
+        <td><input type="checkbox" class="checked" value="1" name="categorynew[{$cat[cid]}][status]"{if $cat[status]} checked="checked"{/if}></td>
+
+        <td><a href="$BASESCRIPT?action=$action&operation=edit&cid=$cat[cid]">$lang[edit]</a> <a href="$BASESCRIPT?action=$action&operation=delete&cid=$cat[cid]">$lang[del]</a></td>
+
+      </tr>
+
+	  <!--{loop $categories[sub] $sub}-->
+
+	  <!--{if $sub[fid]==$cat[cid]}-->
+
+	  <tr onMouseOver="$(this).addClass('hover')" onMouseOut="$(this).removeClass('hover')">
+
+        <td>$sub[cid]</td>
+
+        <td><input type="text" class="text text60" name="categorynew[{$sub[cid]}][displayorder]" value="$sub[displayorder]"></td>
+
+        <td>|！！<input type="text" class="text text160" name="categorynew[{$sub[cid]}][name]" value="$sub[name]"></td>
+
+        <td>$sub[records]</td>
+
+        <td><input type="checkbox" class="checked" value="1" name="categorynew[{$sub[cid]}][status]"{if $sub[status]} checked="checked"{/if}></td>
+
+        <td><a href="$BASESCRIPT?action=$action&operation=edit&cid=$sub[cid]">$lang[edit]</a> <a href="$BASESCRIPT?action=$action&operation=delete&cid=$cat[cid]">$lang[del]</a></td>
+
+      </tr>
+
+	  <!--{/if}-->
+
+	  <!--{/loop}-->
+
+	  </tbody>
+
+	  <!--{/loop}-->
+
+	  <tbody id="newcat"></tbody>
+
+	  <tr>
+
+	  	<td></td>
+
+		<td colspan="5"><div class="addtr"><a href="###" onclick="addCat()">$lang[category_addnew]</a></div></td>
+
+	  </tr>
+
+	  <tr class="bottom">
+
+	  	<td colspan="6">
+
+			<input type="submit" class="button" value="$lang[submit]">
+
+			<input type="button" class="button" value="$lang[refresh]" onclick="LoadPage()">
+
+		</td>
+
+	  </tr>
+
+    </table>
+
+  </form>
+
+</div>
+
+<script type="text/javascript">
+
+function addCat(){
+
+	$("#newcat").append('<tr><td><input type="hidden" name="newfid[]" value="0"><input type="hidden" name="newtype[]" value="category"</td><td><input type="text" class="text text60" name="neworder[]" value="0"></td>'+
+
+        '<td><input type="text" class="text text160" style="font-weight:bold;" name="newname[]" value="$lang[category_newname]"></td><td></td>'+
+
+        '<td><input type="checkbox" class="checked" value="1" name="newstatus[]" checked="checked"></td><td></td></tr>');
+
+}
+
+function addChild(id){
+
+	$("#cat_"+id).append('<tr><td><input type="hidden" name="newfid[]" value="'+id+'"><input type="hidden" name="newtype[]" value="sub"></td><td><input type="text" class="text text60" name="neworder[]" value="0"></td>'+
+
+        '<td>|！！<input type="text" class="text text160" name="newname[]" value="$lang[category_newname]"></td><td></td><td><input type="checkbox" class="checked" name="newstatus[]" checked="checked"></td><td></td></tr>');
+
+}
+
+</script>
+
+<!--{/if}-->

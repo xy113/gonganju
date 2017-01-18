@@ -1,0 +1,323 @@
+<!--{if $operation=='add'||$operation=='edit'}-->
+
+<div class="toolbar">
+
+	{if $operation=='edit'}
+
+	<h2>$lang[member_manage] - $member[username](UID:$member[uid])</h2>
+
+	<ul class="tab">
+
+		<li><a href="{$BASESCRIPT}?action=member"><span>$lang[manage]</span></a></li>
+
+		<li class="current"><a href="{$BASESCRIPT}?action=member&operation=edit&uid=$uid"><span>$lang[edit]</span></a></li>
+
+	</ul>
+
+	{else}
+
+	<h2>$lang[member_manage]</h2>
+
+	<ul class="tab">
+
+		<li><a href="{$BASESCRIPT}?action=member"><span>$lang[manage]</span></a></li>
+
+		<li class="current"><a href="{$BASESCRIPT}?action=member&operation=add"><span>$lang[add]</span></a></li>
+
+	</ul>
+
+	{/if}
+
+</div>
+
+<div class="wrapper">
+
+    <form id="member" name="member" method="post" action="{$BASESCRIPT}?action=member&operation=$operation">
+
+	<input type="hidden" name="formsubmit" value="yes" />
+
+	<input type="hidden" name="formhash" value="{FORMHASH}" />
+
+	<input type="hidden" name="uid" value="$uid" />
+
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="formtable">
+
+      <tr class="firstrow">
+
+        <td colspan="2">{if $operation=='add'}$lang[member_add]{else}$lang[member_edit]{/if}</td>
+
+      </tr>
+
+	  <tr>
+
+        <td class="bold" width="360">$lang[member_username]</td>
+
+        <td>&nbsp;</td>
+
+      </tr>
+
+      <tr>
+
+        <td><input type="text" class="text" name="membernew[username]" value="$member[username]"{if $operation=='edit'} readonly{/if} /></td>
+
+        <td>{if $operation=='add'}$lang[member_tips_0]{else}$lang[member_tips_1]{/if}</td>
+
+      </tr>
+
+      <tr>
+
+        <td class="bold">$lang[member_password]</td>
+
+        <td>&nbsp;</td>
+
+      </tr>
+
+      <tr>
+
+        <td><input type="password" name="membernew[password]" id="password" class="text" value="" /></td>
+
+        <td>{if $operation=='add'}$lang[member_tips_2]{else}$lang[member_tips_3]{/if}</td>
+
+      </tr>
+
+      <tr>
+
+        <td class="bold">$lang[member_email]</td>
+
+        <td>&nbsp;</td>
+
+      </tr>
+
+      <tr>
+
+        <td><input type="text" name="membernew[email]" id="email" class="text" value="$member[email]" /></td>
+
+        <td>$lang[member_tips_4]</td>
+
+      </tr>
+
+	  <tr>
+
+        <td class="bold">$lang[member_usergroup]</td>
+
+        <td>&nbsp;</td>
+
+      </tr>
+
+      <tr>
+
+        <td>
+
+			<select name="membernew[groupid]" class="select" style="width:302px;">
+
+			<optgroup label="$lang[usergroup_member]">
+
+			<!--{loop $usergroups[member] $group}-->
+
+			<option value="$group[groupid]"{if $member[groupid]==$group[groupid]} selected="selected"{/if}>$group[grouptitle]</option>
+
+			<!--{/loop}-->
+
+			</optgroup>
+
+			<optgroup label="$lang[usergroup_system]">
+
+			<!--{loop $usergroups[system] $group}-->
+
+			<option value="$group[groupid]"{if $member[groupid]==$group[groupid]} selected="selected"{/if}>$group[grouptitle]</option>
+
+			<!--{/loop}-->
+
+			</optgroup>
+
+			<optgroup label="$lang[usergroup_custom]">
+
+			<!--{loop $usergroups[custom] $group}-->
+
+			<option value="$group[groupid]"{if $member[groupid]==$group[groupid]} selected="selected"{/if}>$group[grouptitle]</option>
+
+			<!--{/loop}-->
+
+			</optgroup>
+
+			</select>
+
+		</td>
+
+        <td></td>
+
+      </tr>
+
+	  <tr class="bottom"><td colspan="2"><input type="submit" name="button-submit" class="button submit" value="$lang[submit]" /></td></tr>
+
+    </table>
+
+    </form>
+
+</div>
+
+<script type="text/javascript">
+
+$("#member").submit(function(){
+
+	if(!$("input[name='membernew[username]']").val()){
+
+		alert('$lang[member_error_0]');
+
+		return false;
+
+	}
+
+	{if $operation=='add'}
+
+	if(($("input[name='membernew[password]']").val()).length<6){
+
+		alert('$lang[member_error_1]');
+
+		return false;
+
+	}
+
+	{else}
+
+	if($("input[name='membernew[password]']").val() && ($("input[name='membernew[password]']").val()).length<6){
+
+		alert('$lang[member_error_1]');
+
+		return false;
+
+	}
+
+	{/if}
+
+	if(!(/^\w+((-|\.)\w+)*@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/).exec($("input[name='membernew[email]']").val())){
+
+		alert('$lang[member_error_2]');
+
+		return false;
+
+	}
+
+	return true;
+
+})
+
+</script>
+
+<!--{else}-->
+
+<div class="toolbar">
+
+	<span class="right">
+
+		<form method="get" name="search" action="$BASESCRIPT">
+
+		<input type="hidden" name="action" value="$action" />
+
+		<input type="text" class="text text200" name="keywords" value="$keywords" />
+
+		<input type="submit" class="button search" value="{$lang[search]}" />
+
+		</form>
+
+	</span>
+
+	<h2>$lang[member_manage]</h2>
+
+	<ul class="tab">
+
+		<li class="current"><a href="$BASESCRIPT?action=member"><span>$lang[manage]</span></a></li>
+
+		<li><a href="$BASESCRIPT?action=member&operation=add"><span>$lang[add]</span></a></li>
+
+	</ul>
+
+</div>
+
+<div class="wrapper">
+
+	<form method="post" name="member" action="{$BASESCRIPT}?action=member">
+
+		<input type="hidden" name="formsubmit" value="yes" />
+
+		<input type="hidden" name="formhash" value="{FORMHASH}" />
+
+	  	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="listtable">
+
+		<tr>
+
+		  <th width="50"><input type="checkbox" class="checkbox" onclick="checkAll(this,'delete[]')" /> $lang[delete_check]</th>
+
+		  <th>$lang[member_username]</th>
+
+		  <th width="120">$lang[member_usergroup]</th>
+
+		  <th width="140">$lang[member_regdate]</th>
+
+		  <th width="140">$lang[member_lastvisit]</th>
+
+		  <th width="120">$lang[member_lastip]</th>
+
+		  <th width="100">$lang[member_credits]</th>
+
+		  <th width="60"></th>
+
+		</tr>
+
+		<tbody id="members">
+
+		<!--{loop $members $mb}-->
+
+		<tr>
+
+		  <td><input{if !$mb[adminid]} name="delete[]"{else} disabled="disabled"{/if} type="checkbox" value="{$mb[uid]}" /></td>
+
+		  <td><a href="card.php?uid=$mb[uid]" target="_blank">$mb[username]</a></td>
+
+		  <td>$mb[grouptitle]</td>
+
+		  <td>$mb[regdate]</td>
+
+		  <td>$mb[lastvisit]</td>
+
+		  <td><a href="http://www.ip138.com/ips.asp?ip={$mb[lastip]}" target="_blank">{$mb[lastip]}</a></td>
+
+		  <td>$mb[credits]</td>
+
+		  <td>{if ($mb[adminid] && $isfounder) || !$mb[adminid]}<a href="{$BASESCRIPT}?action=member&operation=edit&uid=$mb[uid]&page=$page">$lang[edit]</a>{/if}</td>
+
+		</tr>
+
+		<!--{/loop}-->
+
+		</tbody>
+
+		<tr class="bottom">
+
+			<td><input type="checkbox" class="checkbox" onclick="checkAll(this,'delete[]')" /> $lang[delete_check]</td>
+
+			<td colspan="8">
+
+				<span class="pagebox">$lang[total]{$totalrecords}$lang[total_records] {$pagelink}</span>
+
+				<input type="submit" class="button" value="$lang[submit]" />
+
+				<input type="button" class="button" value="$lang[refresh]" onclick="LoadPage('keywords=$keywords&page=$page')" />
+
+			</td>
+
+		</tr>
+
+	  </table>
+
+	 </form>
+
+</div>
+
+<script type="text/javascript">
+
+$("#members tr").mouseover(function(){$(this).addClass("hover")}).mouseout(function(){$(this).removeClass("hover")});
+
+</script>
+
+<!--{/if}-->

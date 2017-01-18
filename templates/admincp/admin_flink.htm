@@ -1,0 +1,229 @@
+<!--{if $operation=='edit'}-->
+
+<div class="toolbar">
+
+	<h2>$lang[friendlink]</h2>
+
+	<ul class="tab">
+
+		<li><a href="{$BASESCRIPT}?action=flink"><span>$lang[manage]</span></a></li>
+
+		<li class="current"><a href="{$BASESCRIPT}?action=flink&operation=edit&siteid=$siteid"><span>$lang[edit]</span></a></li>
+
+	</ul>
+
+</div>
+
+<div class="wrapper">
+
+	<form method="post" action="{$BASESCRIPT}?action=flink&operation=edit">
+
+	<input type="hidden" name="formsubmit" value="yes">
+
+	<input type="hidden" name="formhash" value="{FORMHASH}" />
+
+	<input type="hidden" name="siteid" value="$siteid">
+
+	  <table width="100%" border="0" cellspacing="0" cellpadding="0" class="formtable">
+
+	  	<tr class="firstrow">
+
+		  <td colspan="2">$lang[flink_edit]</td>
+
+		</tr>
+
+		<tr>
+
+		  <td width="520" class="bold">$lang[flink_sitename]</td>
+
+		  <td>&nbsp;</td>
+
+		</tr>
+
+		<tr>
+
+		  <td><input type="text" class="text text500" name="sitenew[sitename]" value="$site[sitename]"></td>
+
+		  <td>&nbsp;</td>
+
+		</tr>
+
+		<tr>
+
+		  <td class="bold">$lang[flink_siteurl]</td>
+
+		  <td>&nbsp;</td>
+
+		</tr>
+
+		<tr>
+
+		  <td><input type="text" class="text text500" name="sitenew[siteurl]" value="$site[siteurl]"></td>
+
+		  <td>&nbsp;</td>
+
+		</tr>
+
+		<tr>
+
+		  <td class="bold">$lang[flink_logo]</td>
+
+		  <td>&nbsp;</td>
+
+		</tr>
+
+		<tr>
+
+		  <td><input type="text" class="text text500" name="sitenew[logo]" value="$site[logo]"></td>
+
+		  <td>&nbsp;</td>
+
+		</tr>
+
+		<tr>
+
+		  <td class="bold">$lang[displayorder]</td>
+
+		  <td>&nbsp;</td>
+
+		</tr>
+
+		<tr>
+
+		  <td><input type="text" class="text text500" name="sitenew[displayorder]" value="$site[displayorder]"></td>
+
+		  <td>&nbsp;</td>
+
+		</tr>
+
+		<tr>
+
+		  <td class="bold">$lang[description]</td>
+
+		  <td>&nbsp;</td>
+
+		</tr>
+
+		<tr>
+
+		  <td><textarea name="sitenew[description]" class="textarea" style="width:500px;">$site[description]</textarea></td>
+
+		  <td>&nbsp;</td>
+
+		</tr>
+
+		<tr>
+
+		  <td><input type="submit" class="button submit" name="button-submit" value="$lang[submit]"></td>
+
+		  <td>&nbsp;</td>
+
+		</tr>
+
+	  </table>
+
+  </form>
+
+</div>
+
+<!--{else}-->
+
+<div class="toolbar">
+
+	<h2>$lang[friendlink]</h2>
+
+	<span class="records">$lang[total]{$totalrecords}$lang[total_records]</span>
+
+</div>
+
+<div class="wrapper">
+
+	<form method="post" name="sites" action="{$BASESCRIPT}?action=flink&page=$page">
+
+	<input type="hidden" name="formsubmit" value="yes">
+
+	<input type="hidden" name="formhash" value="{FORMHASH}" />
+
+  	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="listtable">
+
+      <tr>
+
+        <th width="50"><input type="checkbox" class="checkbox" onClick="checkAll(this,'delete[]')"> $lang[delete_check]</th>
+
+        <th width="180">$lang[flink_sitename]</th>
+
+        <th width="320">$lang[flink_siteurl]</th>
+
+        <th width="100">$lang[displayorder]</th>
+
+        <th width="80">$lang[display]</th>
+
+        <th>&nbsp;</th>
+
+      </tr>
+
+	  <!--{loop $sites $site}-->
+
+      <tr onmouseover="$(this).addClass('hover')" onmouseout="$(this).removeClass('hover')">
+
+        <td><input type="checkbox" class="checkbox" name="delete[]" value="$site[siteid]"></td>
+
+        <td><input type="text" class="text text160" value="$site[sitename]" name="sitenew[{$site[siteid]}][sitename]"></td>
+
+        <td><input type="text" class="text" value="$site[siteurl]" name="sitenew[{$site[siteid]}][siteurl]"></td>
+
+        <td><input type="text" class="text text60" value="$site[displayorder]" name="sitenew[{$site[siteid]}][displayorder]"></td>
+
+        <td><input type="checkbox" class="checkbox" value="1" name="sitenew[{$site[siteid]}][display]"{if $site[display]} checked="checked"{/if}></td>
+
+        <td><a href="{$BASESCRIPT}?action=flink&operation=edit&siteid=$site[siteid]">$lang[edit]</a></td>
+
+      </tr>
+
+	  <!--{/loop}-->
+
+	  <tbody id="newsite"></tbody>
+
+      <tr>
+
+        <td></td>
+
+        <td colspan="5"><div class="addtr"><a href="javascript:;" onclick="addLink()">$lang[flink_addnew]</a></div></td>
+
+      </tr>
+
+	  <tr class="bottom">
+
+        <td><input type="checkbox" class="checkbox" onClick="checkAll(this,'delete[]')"> $lang[delete_check]</td>
+
+        <td colspan="5">
+
+			<span class="pagebox">{$pagelink}</span>
+
+			<input type="submit" name="button-submit" class="button" value="$lang[submit]">
+
+			<input type="button" class="button" value="$lang[refresh]" onclick="LoadPage('page=$page')">
+
+		</td>
+
+      </tr>
+
+    </table>
+
+	</form>
+
+</div>
+
+<script type="text/javascript">
+
+function addLink(){
+
+	$("#newsite").append('<tr><td></td><td><input type="text" class="text text160" name="newsitename[]"></td><td><input type="text" class="text" name="newsiteurl[]"></td>'+
+
+        '<td><input type="text" class="text text60" name="neworder[]" value="0"></td><td><input type="checkbox" class="checkbox" value="1" name="newdisplay[]"></td><td></td></tr>');
+
+}
+
+</script>
+
+<!--{/if}-->

@@ -1,0 +1,41 @@
+/* CSS Document */
+html,body {font-size:12px; font-family:sans-serif; color:#333; padding:0; margin:0; height:100%;}
+a:link,a:active,a:visited {color:#333; text-decoration:none;}
+a:hover {color:#FF0000; text-decoration:none;}
+form,ul,li {padding:0; margin:0; list-style:none;}
+.header {height:28px; clear:both; color:#ccc; background:#464646; font:13px/28px Arial;}
+.header a:link,.header a:visited,.header a:active{color:#ccc;}
+.header .item {float:left; border-left:1px #333 solid; display:inline-block; position:relative; z-index:100;}
+.header .item a.link {border-left:1px #555 solid; padding:0 15px; display:inline-block;}
+.header .item ul{width:110px; position:absolute; top:28px; left:0; background:#fff; border:1px #dfdfdf solid; border-top:none; z-index:300; box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2); display:none;}
+.header .item ul li{clear:both; text-align:left; display:inline;}
+.header .item ul li a{border:none; color:#003366; display:block; padding:0 15px;}
+.header .item ul li a:hover {background:#f5f5f5;}
+.header .item a.link span{background:url(admin-bar-sprite.png) -2px -176px no-repeat; height:28px; line-height:28px; border:none; padding:0 0 0 20px; display:inline-block;}
+.header .addnew,.header .home {background:#fff; color:#333;}
+.header .addnew a.link span{background:url(admin-bar-sprite.png) -2px -197px no-repeat; color:#333;}
+.header .addnew ul,.header .home ul {display:block;}
+.header .home a.link{background:#fff; color:#333;}
+
+.header .account {float:right; width:auto !important; width:160px;}
+.header .account a.link{padding:0 15px; height:28px; border-left:1px #555 solid; display:block;}
+.header .account a.link img {margin:0 0 3px 6px; vertical-align:middle; display:inline;}
+.header .account #profile {width:220px; height:80px; padding:10px; background:#fff; border:1px #dfdfdf solid; border-top:none; display:none; position:absolute; top:28px; right:0; z-index:300; box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);}
+.header .account #profile img {border:0; float:left; display:inline; margin:10px 20px 0 0;}
+.header .account #profile p{padding:0; float:left; margin:0; line-height:30px; color:#333;}
+.header .account #profile a{display:inline; padding:0; border:none; color:#21759B;}
+.header .account #profile a:hover {color:#FF0000; background:#f5f5f5;}
+.header .account-on {background:#fff; text-shadow:none; color:#333;}
+.header .account-on a.link {color:#333;}
+
+.leftmenu {width:150px; padding:0; vertical-align:top; background:url(menu-shadow.png) right 0 repeat-y #ececec; border-right:1px #e5e5e5 solid;}
+.leftmenu div {clear:both; padding:0;}
+.leftmenu div h3{margin:0; padding:0; font-size:13px; border-bottom:1px #fff solid; color:#666; cursor:pointer;}
+.leftmenu div h3 span {display:block; padding:5px 10px; border-bottom:1px #ccc solid;}
+.leftmenu div h3.on{background:url(menu_on.png); color:#fff;}
+.leftmenu div ul {padding:0; clear:both; margin:0; background:url(menu-shadow.png) right 0 repeat-y #fff; display:none; border-bottom:1px #ccc solid;}
+.leftmenu div ul li {font-size:12px; clear:both;}
+.leftmenu div ul li a{display:block; padding:5px 10px; color:#666;}
+.leftmenu div ul li a:hover {background:#EAF2FA;}
+.leftmenu div ul li a.cur {font-weight:bold; color:#333;background:#EAF2FA;}
+.main{background:#fff;}

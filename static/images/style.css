@@ -1,0 +1,114 @@
+/* CSS Document */
+html,body{margin:0px; padding:0px; color:#333333; font-size:13px; background:#DFEDF8;}
+ul,li,form,dl,dd,dt {padding:0; margin:0; list-style:none;}
+a:link{color:#333; text-decoration:none;}
+a:hover,a:active,a:visited{color:#333; text-decoration:none;}
+a:hover{color:#333; text-decoration:underline;}
+input{height:20px; background-color:#EEFFFF; border:1px #CCCCCC solid;}
+.button{background-color:#0066cc; border:1px #003366 solid; color:#FFFFFF; height:24px; line-height:24px; padding:0 15px;}
+.checkbox {height:14px; vertical-align:middle;}
+.clear {clear:both; height:0px; line-height:0px;}
+.blank {clear:both; height:10px; line-height:10px; background:#fff;}
+.warpper {width:980px; margin:0 auto; clear:both; background:#fff;}
+
+.top{background:url(module.jpg) 0 -1px repeat-x; height:30px; line-height:30px; clear:both;}
+.top a:link,.top a:visited,.top a:active,.top a:hover{color:#333;}
+.top .inner {width:960px; padding:0 10px; margin:0 auto; clear:both;}
+.top .inner .right{float:right; font-family:Arial;}
+
+#nav{background:url(navbg.png) repeat-x; height:40px; line-height:40px;width:980px; margin:0 auto; clear:both;}
+#nav li{color:#fff; font-size:14px; float:left;}
+#nav li a{display:block; padding:0 15px; line-height:40px; font-weight:bold; color:#FFFFFF;}
+
+.BDLeft {width:700px; float:left;}
+.BDLeft .left1 {width:170px; float:left;}
+.BDLeft .right1 {width:520px; float:right; text-align:left;}
+.BDLeft .contain {clear:both;}
+.BDLeft .contain2 {clear:both; background:url(lbg.png) left top no-repeat; width:172px; height:182px;}
+.BDLeft .contain2 .tt{clear:both; height:30px; line-height:30px; padding:3px 0 0 40px; font-size:14px; color:#fff; font-weight:bold;}
+.BDRight {width:268px; float:right; text-align:left;}
+.slide {width:300px; height:230px; float:left;}
+.news {width:360px; float:right; text-align:left;}
+.news h3{margin:0; padding:0; height:30px; line-height:30px; overflow:hidden; font-size:16px;}
+.news p{margin:0; padding:5px 0; line-height:150%; font-size:12px; color:#666;}
+.news ul li{font-size:14px; height:25px; line-height:25px; overflow:hidden; background:url(arrow.gif) left center no-repeat; padding-left:15px;}
+
+.tztb {background:url(grbbg.jpg) no-repeat; width:268px; height:330px; float:right; text-align:left; padding-top:90px;}
+.tztb ul {width:205px; height:240px; margin:0 auto;}
+.tztb ul li {font-size:12px; height:22px; line-height:22px; overflow:hidden;}
+.tztb ul li span {float:right; margin-left:5px;}
+.tztb .more {clear:both; text-align:center; padding:15px 0 0;}
+
+.gfxwj {background:url(gfxwj.png) center top no-repeat; width:268px; height:303px; clear:both; margin-top:10px;}
+.gfxwj .tt {clear:both; height:30px; line-height:30px; padding:5px 0 0 45px; font-size:14px; color:#fff; font-weight:bold;}
+.gfxwj ul {padding:5px 10px 0;}
+.gfxwj ul li {font-size:12px; height:22px; line-height:22px; overflow:hidden; background:url(an_2.gif) left center no-repeat; padding-left:10px;}
+.gfxwj ul li span {float:right; margin-left:5px;}
+.gfxwj .more {clear:both; text-align:right; padding:18px 15px 0;}
+
+.wzdh {background:url(wzdh.png) no-repeat; width:268px; height:170px; padding:74px 0 0;}
+
+h3.xxyd{width:167px; height:37px; margin:0; clear:both;}
+h3.xxyd a{display:block; background:url(item.png) no-repeat; line-height:37px; padding-left:45px; font-size:14px; font-weight:bold; color:#990000; text-decoration:none;}
+h3.xxyd a:hover{display:block; background:url(item-on.png) no-repeat; line-height:37px; padding-left:45px; font-size:14px; font-weight:bold; color:#fff; text-decoration:none;}
+.tdiv {background:url(tbg.png) left center no-repeat; height:30px; line-height:28px; padding:2px 0 0 35px; color:#fff; font-size:14px; font-weight:bold;}
+.tdiv em{float:right; font-size:12px; color:#333; font-style:normal; margin-right:10px;}
+#gqf{background:url(tbg2.png) left center no-repeat;}
+.djxx {width:435px; float:right; text-align:left; border:1px #FF6633 solid;}
+.titlediv {background:url(titlebg_02.png) left center repeat-x; height:30px;}
+.titlediv span {background:url(titlebg_01.png) left center no-repeat; height:30px; line-height:30px; padding-left:40px; float:left; color:#fff; font-size:14px; font-weight:bold;}
+.titlediv em{float:right; margin:6px 10px;}
+.titlediv em a {color:#fff; text-decoration:none; font-style:normal;}
+.titlediv em a:hover{text-decoration:underline;}
+.list {padding:5px 10px; clear:both;}
+.list li{font-size:13px; line-height:22px; height:22px; text-align:left; overflow:hidden; background:url(dot.png) 0 7px no-repeat; padding-left:12px;}
+.list li span {float:right; font-size:12px;}
+
+.banner {clear:both; text-align:center; background:#fff; padding:10px 0; width:980px; margin:0 auto;}
+.containleft,.containright {width:329px; float:left; border:1px #FF3333 solid;}
+.containright {float:right; text-align:left;}
+.imagediv {clear:both; border:1px #FF3333 solid;}
+#marquee {width:960px; height:145px; margin:10px auto; overflow:hidden;}
+#marquee ul {clear:both;}
+#marquee ul li{float:left; width:160px; text-align:center; border:1px #FF9966 solid; margin:0 5px 5px 0;}
+#marquee ul li .i {width:140px; padding:4px; clear:both; text-align:center; margin:0 auto;}
+#marquee ul li .i img {width:140px; height:115px; border:none;}
+#marquee ul li .t {width:140px; height:20px; line-height:20px; text-align:center; clear:both; margin:0 auto; overflow:hidden;}
+.fitem {padding:6px 0; text-align:center;}
+.links {padding:10px; text-align:left; line-height:150%;}
+.links a{margin-right:5px;}
+
+.yourpos{color:#333333; font-size:12px; padding:0 10px; height:28px; line-height:28px; width:960px; margin: 0 auto; background:#fff;}
+.tab {background:url(tab_h_11.png) repeat-x; height:28px; line-height:28px; padding:0 10px; clear:both; font-weight:bold;}
+.tab span{float:right; font-size:12px; font-weight:400;}
+.tab2 {border-top:1px #ccc solid;}
+
+.bodyLeft {width:670px; float:left; border:1px #ff3333 solid;}
+.bodyRight {width:300px; float:right; text-align:left;}
+.bodyLeft .arcTitle {text-align:center; margin:0; padding:15px 0; color:#993300; font-size:22px;}
+.bodyLeft .arcinfo {font-size:12px; height:24px; line-height:24px; border-bottom:1px #ff3333 dotted; text-align:center; clear:both; color:#993300;}
+.bodyLeft .arcbody {line-height:150%; font-size:14px; padding:10px 20px; text-align:justify;}
+.bodyLeft h3.tit {margin:10px 20px; clear:both; font-size:14px;}
+.bodyLeft ul.list {margin:0 20px; clear:both;}
+.bodyLeft ul.list li {font-size:14px; text-align:left; height:24px; line-height:24px; overflow:hidden; background:url(dot.png) left center no-repeat; padding-left:10px;}
+.bodyLeft ul.list li span {float:right; color:#666666;}
+.bodyLeft #videoplayer {text-align:center; clear:both; margin:10px 0;}
+
+.bodyRight .rbody {border:1px #ff3333 solid; clear:both;}
+.bodyRight .list {clear:both; padding:5px 10px;}
+.bodyRight .list li{text-align:left; height:22px; line-height:22px; overflow:hidden;}
+.bodyRight dl {margin:0; padding:0; width:149px; float:left; text-align:center;}
+.bodyRight dl dd{margin:0; padding:0; text-align:center;}
+.bodyRight dl dd img {width:135px; height:100px; border:1px #333 solid;}
+.bodyRight dl dt {width:135px; text-align:center; clear:both; margin:0 auto; height:24px; line-height:24px; overflow:hidden;}
+
+.pager {clear:both; margin:10px 0; text-align:center;}
+.pager a,.pager span{display:inline-block; height:22px; line-height:22px; padding:0 5px; border:1px #ddd solid; color:#555; text-decoration:none; margin:0 2px; background:#fff;}
+.pager a:hover{border-color:#999; color:#333;}
+.pager span.cur {background:#FFFFDD;}
+.pager a.prev {background:url(arw_l.gif) left center no-repeat; padding-left:20px;}
+.pager a.next {background:url(arw_r.gif) right center no-repeat; padding-right:20px;}
+
+#footer{border-top:1px #ff3333 solid;}
+#footer .menu {padding:10px 0; text-align:center;}
+#footer p{padding:5px 0; margin:0; text-align:center; font-size:13px; font-family:Arial;}

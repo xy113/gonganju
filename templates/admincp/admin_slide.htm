@@ -1,0 +1,201 @@
+<!--{if $operation=='add' || $operation=='edit'}-->
+
+<div class="toolbar">
+
+	<h2>$lang[about_manage]</h2>
+
+	<ul class="tab">
+
+		<li><a href="{$BASESCRIPT}?action=$action"><span>$lang[manage]</span></a></li>
+
+		{if $operation=='add'}
+
+		<li class="current"><a href="{$BASESCRIPT}?action=$action&operation=add"><span>$lang[add]</span></a></li>
+
+		{else}
+
+		<li class="current"><a href="{$BASESCRIPT}?action=$action&operation=edit&id=$id"><span>$lang[edit]</span></a></li>
+
+		{/if}
+
+	</ul>
+
+</div>
+
+<div class="wrapper">
+
+	<form method="post" name="formslide" id="formslide" enctype="multipart/form-data" action="{$BASESCRIPT}?action=$action&operation=$operation">
+
+	<input type="hidden" name="formsubmit" value="yes">
+
+	<input type="hidden" name="formhash" value="{FORMHASH}" />
+
+	<input type="hidden" name="id" value="$id" />
+
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="formtable">
+
+		<tr class="firstrow">
+
+		  <td class="bold" colspan="2">$lang[slide_manage]</td>
+
+		</tr>
+
+		<tr>
+
+			<td class="bold" width="40">$lang[title]</td>
+
+			<td><input type="text" class="text text500" name="slidenew[title]" value="$slide[title]"></td>
+
+		</tr>
+
+		<tr>
+
+			<td class="bold" width="40">$lang[link]</td>
+
+			<td><input type="text" class="text text500" name="slidenew[linkurl]" value="$slide[linkurl]"></td>
+
+		</tr>
+
+		<tr>
+
+		  <td class="bold">$lang[image]</td>
+
+		  <td><input type="text" class="text text500" name="slidenew[image]" id="slide_image" value="$slide[image]"> 
+
+		  	<b class="button" tabindex="0">
+
+				<span>浏览文件</span>
+
+				<input type="file" name="file" class="file" id="avatar_file" onchange="slide_image.value=this.value" />
+
+			</b> 
+
+		  </td>
+
+		</tr>
+
+		<tr>
+
+		  <td class="bold">$lang[description]</td>
+
+		  <td><textarea class="textarea" name="slidenew[description]" style="width:500px;">$slide[description]</textarea></td>
+
+		</tr>
+
+		<tr>
+
+		  <td colspan="2"><input type="submit" class="button submit" name="button-submit" value="$lang[submit]"></td>
+
+		</tr>
+
+	</table>
+
+	</form>
+
+</div>
+
+<script type="text/javascript">
+
+$("#formslide").submit(function(){
+
+	var title = $("input[name='slidenew[title]']").val();
+
+	var image = $("input[name='slidenew[image]']").val();
+
+	if(!title){
+
+		alert("标题不能为空");
+
+		return false;
+
+	}
+
+	if(!image){
+
+		alert("图片不能留空");
+
+		return false;
+
+	}
+
+	return true;
+
+});
+
+</script>
+
+<!--{else}-->
+
+<div class="toolbar">
+
+	<h2>$lang[slide_manage]</h2>
+
+	<ul class="tab">
+
+		<li class="current"><a href="{$BASESCRIPT}?action=$action"><span>$lang[manage]</span></a></li>
+
+		<li><a href="{$BASESCRIPT}?action=$action&operation=add"><span>$lang[add]</span></a></li>
+
+	</ul>
+
+</div>
+
+<div class="wrapper">
+
+	<form name="about" method="post" action="{$BASESCRIPT}?action=$action">
+
+	<input type="hidden" name="formsubmit" value="yes" />
+
+	<input type="hidden" name="formhash" value="{FORMHASH}" />
+
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="listtable">
+
+      <tr>
+
+        <th width="50"><input type="checkbox" class="checkbox" onclick="checkAll(this,'delete[]')"> $lang[delete_check]</th>
+
+        <th>$lang[title]</th>
+
+        <th width="100">$lang[about_lastedit]</th>
+
+        <th width="160">$lang[about_time]</th>
+
+        <th width="60">&nbsp;</th>
+
+      </tr>
+
+	  <tbody id="abouts">
+
+	  <!--{loop $slides $sd}-->
+
+      <tr onMouseOver="$(this).addClass('hover')" onMouseOut="$(this).removeClass('hover')">
+
+        <td><input type="checkbox" class="checkbox" name="delete[]" value="$sd[id]"></td>
+
+        <td><a href="$sd[linkurl]" target="_blank">$sd[title]</a></td>
+
+        <td>$sd[author]</td>
+
+        <td>$sd[dateline]</td>
+
+        <td><a href="{$BASESCRIPT}?action=$action&operation=edit&id=$sd[id]">$lang[edit]</a></td>
+
+      </tr>
+
+	  <!--{/loop}-->
+
+	  </tbody>
+
+	  <tr class="bottom">
+
+		<td colspan="5"><input type="submit" class="button" value="$lang[submit]"> <input type="button" class="button" value="$lang[refresh]" onClick="LoadPage('page=$page')"></td>
+
+	  </tr>
+
+  </table>
+
+  </form>
+
+</div>
+
+<!--{/if}-->
